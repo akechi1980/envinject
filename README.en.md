@@ -324,4 +324,7 @@ cargo check
 
 ## License
 
-No license file in the repo yet; add one if you publish.
+This project is dual-licensed under **MIT OR Apache-2.0** (choose either).
+
+- MIT: see `LICENSE-MIT`
+- Apache 2.0: see `LICENSE-APACHE`

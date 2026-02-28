@@ -432,4 +432,7 @@ cargo check
 
 ## 许可证
 
-当前仓库未声明许可证。如需开源发布，请补充 `LICENSE` 文件并在此更新。
+本项目采用 **MIT OR Apache-2.0** 双许可证，你可以任选其一使用。
+
+- MIT：见 `LICENSE-MIT`
+- Apache 2.0：见 `LICENSE-APACHE`
