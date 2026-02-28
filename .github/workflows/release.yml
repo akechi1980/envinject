@@ -114,10 +114,22 @@ jobs:
 
       - name: Prepare release assets (unique filenames)
         run: |
-          cp artifacts/envinject-linux-x86_64/artifact/envinject ./envinject-linux-x86_64
-          cp artifacts/envinject-windows-x86_64/artifact/envinject.exe ./envinject-windows-x86_64.exe
-          cp artifacts/envinject-macos-aarch64/artifact/envinject ./envinject-macos-aarch64
-          cp artifacts/envinject-macos-x86_64/artifact/envinject ./envinject-macos-x86_64
+          # download-artifact 可能把目录内容放在 artifact 名目录下，或再套一层 artifact/，这里兼容两种结构
+          copy_bin() { name=$1; bin=$2; dest=$3
+            if [ -f "artifacts/$name/$bin" ]; then
+              cp "artifacts/$name/$bin" "$dest"
+            elif [ -f "artifacts/$name/artifact/$bin" ]; then
+              cp "artifacts/$name/artifact/$bin" "$dest"
+            else
+              echo "::error::找不到 $name 的构建产物，当前目录结构:"
+              find artifacts -type f
+              exit 1
+            fi
+          }
+          copy_bin envinject-linux-x86_64    envinject        ./envinject-linux-x86_64
+          copy_bin envinject-windows-x86_64 envinject.exe    ./envinject-windows-x86_64.exe
+          copy_bin envinject-macos-aarch64   envinject        ./envinject-macos-aarch64
+          copy_bin envinject-macos-x86_64    envinject        ./envinject-macos-x86_64
           chmod +x envinject-linux-x86_64 envinject-macos-aarch64 envinject-macos-x86_64
           ls -la
 
