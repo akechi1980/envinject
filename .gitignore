@@ -1,0 +1,20 @@
+# Rust / Cargo
+/target/
+**/*.rs.bk
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Local / Env（如有）
+.env
+.env.local
+*.local
